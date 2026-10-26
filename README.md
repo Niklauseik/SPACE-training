@@ -1,8 +1,12 @@
-# SPACE: core training code
+# SPACE: training code and benchmark specifications
 
-Core DPO training implementation accompanying **More Than Just Style: Benchmarking Personality Influence in Large Language Models**.
+Core DPO training implementation and benchmark specifications accompanying **More Than Just Style: Benchmarking Personality Influence in Large Language Models**.
 
-This release contains training code only. It does not distribute datasets, base checkpoints, trained adapters or merged model weights, evaluation inputs, raw responses, experimental results, or manuscript sources. It is not a complete reproduction package for all SPACE benchmark results.
+This release contains the core DPO training implementation and structured SPACE benchmark documentation. It does not distribute datasets, base checkpoints, trained adapters or merged model weights, exact evaluation panels, evaluation runners, raw responses, experimental results, or manuscript sources. It is not a complete reproduction package for all SPACE benchmark results.
+
+## SPACE benchmark navigation
+
+Open the [benchmark index](benchmarks/README.md) for the full hierarchy, a separate specification page for every principal task, paper-specific input/output structures and counts, supplementary probe grids, and clickable links to original dataset providers. The [shared protocol](benchmarks/protocol.md) explains the controlled comparisons and scoring boundaries; the [JSON catalogue](benchmarks/manifest.json) lists the same resources in machine-readable form.
 
 ## Included implementation
 

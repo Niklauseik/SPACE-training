@@ -1,0 +1,1734 @@
+{
+  "name": "SPACE benchmark specifications",
+  "version": "2026-10-26",
+  "scope": "Task structure, paper-specific coverage, metrics, and upstream links. No datasets, selected input panels, evaluation runners, raw responses, results, or weights are distributed.",
+  "count_convention": "Counts refer to the named saved task versions per condition, not necessarily independent source situations.",
+  "tasks": [
+    {
+      "id": "mbti",
+      "group": "personality",
+      "title": "MBTI personality verification",
+      "count": 46,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "item/question",
+        "two response options",
+        "option-to-dimension/pole mapping"
+      ],
+      "output_structure": [
+        "one selected option"
+      ],
+      "measures": [
+        "pole-choice proportion by dimension"
+      ],
+      "construction": "The main T/F analysis uses 46 valid T/F questionnaire items. E/I, S/N and J/P checks are complementary dimension-specific analyses.",
+      "upstream_url": null,
+      "note": "46 is the T/F item count, not the item count for every dimension. This is an operational check on model responses, not a human personality diagnosis. Questionnaire records are not released.",
+      "scope": "principal task",
+      "path": "personality/mbti.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/personality/mbti.md"
+    },
+    {
+      "id": "gsm8k",
+      "group": "capability",
+      "title": "GSM8K",
+      "count": 1300,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "question",
+        "label (reference number)"
+      ],
+      "output_structure": [
+        "generated numeric answer"
+      ],
+      "measures": [
+        "accuracy"
+      ],
+      "construction": "The evaluated file contains 1,300 questions. Compare each guidance condition with its corresponding Base.",
+      "upstream_url": "https://github.com/openai/grade-school-math",
+      "note": "The Llama 3.2 3B Base/trained/Prompt protocol uses a 512-token limit and accepts any extracted number matching the reference; combined and Qwen Prompt evaluations extract the final number. Preserve the paper-specific parser distinction; these are not claimed as standardized leaderboard scores.",
+      "scope": "principal task",
+      "path": "capability/gsm8k.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/capability/gsm8k.md"
+    },
+    {
+      "id": "arc-easy",
+      "group": "capability",
+      "title": "ARC Easy",
+      "count": 2000,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "question",
+        "choices",
+        "label"
+      ],
+      "output_structure": [
+        "selected answer label"
+      ],
+      "measures": [
+        "accuracy"
+      ],
+      "construction": "The evaluated file contains 2,000 multiple-choice questions from ARC Easy.",
+      "upstream_url": "https://huggingface.co/datasets/allenai/ai2_arc",
+      "note": "The full denominator includes 87 reference labels not recognized by the A-D parser. Unparseable answers are incorrect, as reported in the appendix.",
+      "scope": "principal task",
+      "path": "capability/arc-easy.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/capability/arc-easy.md"
+    },
+    {
+      "id": "boolq",
+      "group": "capability",
+      "title": "BoolQ",
+      "count": 2000,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "question",
+        "passage",
+        "label"
+      ],
+      "output_structure": [
+        "yes/no answer"
+      ],
+      "measures": [
+        "accuracy"
+      ],
+      "construction": "The evaluated file contains 2,000 items from the training split.",
+      "upstream_url": "https://github.com/google-research-datasets/boolean-questions",
+      "note": "This is the paper-specific evaluation panel, not an official held-out BoolQ test score. Unparseable responses count as incorrect.",
+      "scope": "principal task",
+      "path": "capability/boolq.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/capability/boolq.md"
+    },
+    {
+      "id": "circa",
+      "group": "interpretation",
+      "title": "Circa",
+      "count": 32602,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "context",
+        "polar question",
+        "indirect reply",
+        "mapped reference label"
+      ],
+      "output_structure": [
+        "YES",
+        "NO",
+        "CONDITIONAL",
+        "UNCLEAR"
+      ],
+      "measures": [
+        "label distribution",
+        "accuracy",
+        "macro F1"
+      ],
+      "construction": "Retain source items whose published goldstandard2 label maps to one of the four task classes.",
+      "upstream_url": "https://github.com/google-research-datasets/circa",
+      "note": "All retained inputs stay in distribution denominators; valid leading labels followed by explanations are accepted by the parser.",
+      "scope": "principal task",
+      "path": "interpretation/circa.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interpretation/circa.md"
+    },
+    {
+      "id": "commitmentbank",
+      "group": "interpretation",
+      "title": "CommitmentBank",
+      "count": 1009,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "context",
+        "utterance",
+        "proposition",
+        "individual annotation ratings"
+      ],
+      "output_structure": [
+        "TRUE",
+        "FALSE",
+        "UNCERTAIN"
+      ],
+      "measures": [
+        "label distribution over 1,009 inputs",
+        "accuracy and macro F1 over 858 eligible inputs"
+      ],
+      "construction": "Map positive/negative/zero individual ratings to TRUE/FALSE/UNCERTAIN and require a strict majority for the adapted reference.",
+      "upstream_url": "https://github.com/mcdm/CommitmentBank",
+      "note": "151 items have no strict-majority reference and enter distributions only. This adapted reference is not an original three-class gold label. The Llama 8B F format-compliance issue is documented in the paper.",
+      "scope": "principal task",
+      "path": "interpretation/commitmentbank.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interpretation/commitmentbank.md"
+    },
+    {
+      "id": "fomc",
+      "group": "interpretation",
+      "title": "FOMC policy stance",
+      "count": 2421,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "monetary-policy sentence",
+        "source stance label"
+      ],
+      "output_structure": [
+        "DOVISH",
+        "HAWKISH",
+        "NEUTRAL"
+      ],
+      "measures": [
+        "label distribution",
+        "accuracy",
+        "macro F1"
+      ],
+      "construction": "Combine the retained train/test statements with the frozen stance mapping: 0 DOVISH, 1 HAWKISH, 2 NEUTRAL.",
+      "upstream_url": "https://github.com/gtfintechlab/fomc-hawkish-dovish",
+      "note": "This measures monetary-policy interpretation, not a general positive/negative sentiment scale.",
+      "scope": "principal task",
+      "path": "interpretation/fomc.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interpretation/fomc.md"
+    },
+    {
+      "id": "fiqa-sa",
+      "group": "interpretation",
+      "title": "FiQA sentiment analysis",
+      "count": 1173,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "text",
+        "answer (saved reference)"
+      ],
+      "output_structure": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "measures": [
+        "sentiment distribution",
+        "paper-specific classification accuracy"
+      ],
+      "construction": "Use the 1,173-row financial-sentiment panel reported in the appendix.",
+      "upstream_url": "https://sites.google.com/view/fiqa/",
+      "note": "This link is the original FiQA challenge, not a public download of the exact SPACE panel or an assertion that all FiQA tasks are evaluated.",
+      "scope": "principal task",
+      "path": "interpretation/fiqa-sa.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interpretation/fiqa-sa.md"
+    },
+    {
+      "id": "sst2",
+      "group": "interpretation",
+      "title": "SST-2 sentiment",
+      "count": 10000,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "idx",
+        "text",
+        "label"
+      ],
+      "output_structure": [
+        "positive",
+        "negative"
+      ],
+      "measures": [
+        "sentiment distribution",
+        "classification accuracy"
+      ],
+      "construction": "Use the saved 10,000-row sentence-sentiment panel.",
+      "upstream_url": "https://huggingface.co/datasets/stanfordnlp/sst2",
+      "note": "The panel is a selected subset; do not equate it with a full official evaluation split.",
+      "scope": "principal task",
+      "path": "interpretation/sst2.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interpretation/sst2.md"
+    },
+    {
+      "id": "financial-news",
+      "group": "interpretation",
+      "title": "Financial news sentiment",
+      "count": 11931,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "text",
+        "label"
+      ],
+      "output_structure": [
+        "Bearish",
+        "Bullish",
+        "Neutral"
+      ],
+      "measures": [
+        "sentiment distribution",
+        "classification accuracy"
+      ],
+      "construction": "Classify the retained financial headline texts using the saved task label mapping.",
+      "upstream_url": "https://huggingface.co/datasets/zeroshot/twitter-financial-news-sentiment",
+      "note": "This is the News task named in the appendix; it is separate from FOMC stance classification.",
+      "scope": "principal task",
+      "path": "interpretation/financial-news.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interpretation/financial-news.md"
+    },
+    {
+      "id": "choices13k",
+      "group": "individual",
+      "title": "Choices13k risky choices",
+      "count": 1764,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "two options",
+        "payoffs and their probabilities",
+        "source choice metadata"
+      ],
+      "output_structure": [
+        "A",
+        "B; mapped to higher/lower payoff variance when defined"
+      ],
+      "measures": [
+        "choice distribution",
+        "percentage-point shifts from Base"
+      ],
+      "construction": "Retain 1,766 source choices; 1,764 have unequal payoff variances and enter the reported variance comparison.",
+      "upstream_url": "https://github.com/jcpeterson/choices13k",
+      "note": "Human choice rates are descriptive references, not correct-answer labels. The retained source panel controls known probabilities and lack of feedback.",
+      "scope": "principal task",
+      "path": "individual/choices13k.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/individual/choices13k.md"
+    },
+    {
+      "id": "transportation",
+      "group": "individual",
+      "title": "Transportation",
+      "count": 210,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "two retained transport alternatives",
+        "travel time",
+        "cost",
+        "selected_modes",
+        "pair_id"
+      ],
+      "output_structure": [
+        "AIR/CAR or the retained mode labels",
+        "faster_more_expensive / slower_cheaper"
+      ],
+      "measures": [
+        "choice distribution"
+      ],
+      "construction": "Adapt the source mode-choice records to paired alternatives, matching the frozen 210-input panel.",
+      "upstream_url": "https://github.com/statsmodels/statsmodels/tree/main/statsmodels/datasets/modechoice",
+      "note": "The original source contains more modes. The SPACE two-option adaptation and its count are not the full source dataset.",
+      "scope": "principal task",
+      "path": "individual/transportation.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/individual/transportation.md"
+    },
+    {
+      "id": "machine-selection",
+      "group": "individual",
+      "title": "Machine selection",
+      "count": 4160,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "ordered reward observations",
+        "source-to-model machine mapping",
+        "one or six choices remaining"
+      ],
+      "output_structure": [
+        "A",
+        "B; mapped to less_observed / more_observed"
+      ],
+      "measures": [
+        "fewer-observed choice proportion"
+      ],
+      "construction": "Extract unequal-information decision points from the feng2021dynamics/exp1.csv experiment in Psych-101: one observation of one machine and three of the other.",
+      "upstream_url": "https://huggingface.co/datasets/marcelbinz/Psych-101",
+      "note": "Use the preserved reward history, not just a means summary. Repeated decision points from a participant/game are related observations.",
+      "scope": "principal task",
+      "path": "individual/machine-selection.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/individual/machine-selection.md"
+    },
+    {
+      "id": "delayed-rewards",
+      "group": "individual",
+      "title": "Delayed rewards",
+      "count": 288,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "sooner_amount",
+        "later_amount",
+        "front_delay_days",
+        "delay_gap_days",
+        "amount_ratio"
+      ],
+      "output_structure": [
+        "A = SOONER",
+        "B = LATER"
+      ],
+      "measures": [
+        "later-payment choice proportion"
+      ],
+      "construction": "Construct a fixed amount/delay grid with both payments guaranteed.",
+      "upstream_url": null,
+      "note": "SPACE-authored task adaptation. There is no separate upstream dataset download for this grid; this specification is its public resource page. Choices are preferences, not accuracy.",
+      "scope": "principal task",
+      "path": "individual/delayed-rewards.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/individual/delayed-rewards.md"
+    },
+    {
+      "id": "stock-windows",
+      "group": "individual",
+      "title": "Original stock windows",
+      "count": 2074,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "asset/date identifier",
+        "ordered price window",
+        "window return",
+        "volatility"
+      ],
+      "output_structure": [
+        "BUY",
+        "SELL",
+        "HOLD"
+      ],
+      "measures": [
+        "action distribution"
+      ],
+      "construction": "Construct overlapping windows from 2,102 asset/date records across seven assets in the source material.",
+      "upstream_url": "https://github.com/pipiku915/FinMem-LLM-StockTrading",
+      "note": "This is a price-based next-action adaptation of source material, not a reproduction of the FinMem trading agent or a profitability benchmark.",
+      "scope": "principal task",
+      "path": "individual/stock-windows.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/individual/stock-windows.md"
+    },
+    {
+      "id": "controlled-stock",
+      "group": "individual",
+      "title": "Controlled stock paths",
+      "count": 1005,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "67 path shapes",
+        "five net changes",
+        "three volatility levels",
+        "fixed final price of 100"
+      ],
+      "output_structure": [
+        "BUY",
+        "SELL",
+        "HOLD"
+      ],
+      "measures": [
+        "action distributions across controlled conditions"
+      ],
+      "construction": "Cross the path, net-change and volatility factors while holding the final price fixed.",
+      "upstream_url": null,
+      "note": "SPACE-authored numerical task. The exact path records are not distributed; the task structure is documented here.",
+      "scope": "principal task",
+      "path": "individual/controlled-stock.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/individual/controlled-stock.md"
+    },
+    {
+      "id": "single-turn-bargaining",
+      "group": "individual",
+      "title": "Single-turn bargaining",
+      "count": 2334,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "item category",
+        "asking price",
+        "initial buyer offer"
+      ],
+      "output_structure": [
+        "ACCEPT",
+        "COUNTER",
+        "EXIT"
+      ],
+      "measures": [
+        "action distribution"
+      ],
+      "construction": "Retain one unambiguous initial buyer-offer snapshot from eligible CraigslistBargain dialogues across five item categories.",
+      "upstream_url": "https://github.com/stanfordnlp/cocoa/tree/master/craigslistbargain",
+      "note": "Omit hidden targets and future outcomes. This is a fixed-context next-action choice, not a live multi-turn negotiation.",
+      "scope": "principal task",
+      "path": "individual/single-turn-bargaining.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/individual/single-turn-bargaining.md"
+    },
+    {
+      "id": "controlled-bargaining",
+      "group": "individual",
+      "title": "Controlled buyer offers",
+      "count": 900,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "source situation",
+        "item category",
+        "price band",
+        "asking price",
+        "buyer-offer ratio"
+      ],
+      "output_structure": [
+        "ACCEPT",
+        "COUNTER",
+        "EXIT"
+      ],
+      "measures": [
+        "action distribution by offer ratio"
+      ],
+      "construction": "Use 150 retained source situations across five item categories and three price bands, with six synthetic offers from 40% to 90% of asking price.",
+      "upstream_url": "https://github.com/stanfordnlp/cocoa/tree/master/craigslistbargain",
+      "note": "This 900-input task is distinct from the separate 315-input targeted buyer-offer probe in the main figure.",
+      "scope": "principal task",
+      "path": "individual/controlled-bargaining.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/individual/controlled-bargaining.md"
+    },
+    {
+      "id": "inspired",
+      "group": "interaction",
+      "title": "INSPIRED recommendations",
+      "count": 119,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "eligible dialogue prefix",
+        "movie-recommendation context"
+      ],
+      "output_structure": [
+        "ACCEPT",
+        "REJECT",
+        "ASK_MORE"
+      ],
+      "measures": [
+        "next-action distribution"
+      ],
+      "construction": "Retain 119 eligible dialogue prefixes from 999 downloaded source dialogues.",
+      "upstream_url": "https://github.com/sweetpeach/Inspired",
+      "note": "This principal task asks for one next action given a supplied history. It is distinct from the authored sequential-feedback probes.",
+      "scope": "principal task",
+      "path": "interaction/inspired.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interaction/inspired.md"
+    },
+    {
+      "id": "frames",
+      "group": "interaction",
+      "title": "Frames travel proposals",
+      "count": 282,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "eligible dialogue prefix",
+        "travel constraints",
+        "proposed itinerary"
+      ],
+      "output_structure": [
+        "ACCEPT",
+        "ASK_DETAILS",
+        "SEARCH_OTHER"
+      ],
+      "measures": [
+        "next-action distribution"
+      ],
+      "construction": "Retain 282 eligible prefixes from 1,369 downloaded source dialogues.",
+      "upstream_url": "https://github.com/Maluuba/frames",
+      "note": "The main figure aggregates the third action as OTHER. This is a one-step response to a supplied dialogue history, not an unrestricted dialogue agent.",
+      "scope": "principal task",
+      "path": "interaction/frames.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interaction/frames.md"
+    },
+    {
+      "id": "bargaining-histories",
+      "group": "interaction",
+      "title": "Real bargaining histories",
+      "count": 351,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "asking price",
+        "latest buyer offer",
+        "previous buyer/seller offers",
+        "price history"
+      ],
+      "output_structure": [
+        "ACCEPT",
+        "COUNTER",
+        "EXIT"
+      ],
+      "measures": [
+        "next-action distribution"
+      ],
+      "construction": "Retain 351 input slices from 314 source dialogues after removing two duplicated prompts.",
+      "upstream_url": "https://github.com/stanfordnlp/cocoa/tree/master/craigslistbargain",
+      "note": "Source price histories are supplied; other textual negotiation conditions are omitted. Multiple slices from one dialogue are dependent observations.",
+      "scope": "principal task",
+      "path": "interaction/bargaining-histories.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interaction/bargaining-histories.md"
+    },
+    {
+      "id": "bargaining-feedback",
+      "group": "interaction",
+      "title": "Program-feedback bargaining",
+      "count": 2272,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "initial situation",
+        "asking price",
+        "initial buyer offer",
+        "action instructions",
+        "controller budget/profile",
+        "maximum model turns"
+      ],
+      "output_structure": [
+        "ACCEPT",
+        "COUNTER",
+        "EXIT at each model turn"
+      ],
+      "measures": [
+        "turn/action distributions",
+        "agreement and final interaction outcomes"
+      ],
+      "construction": "Exclude 62 initial offers at or above asking price, then allow at most three model choices with program-generated buyer feedback.",
+      "upstream_url": "https://github.com/stanfordnlp/cocoa/tree/master/craigslistbargain",
+      "note": "This is the model-in-the-loop interaction task. Buyer responses come from a deterministic program, not a second language model; keep it separate from fixed-context history tasks.",
+      "scope": "principal task",
+      "path": "interaction/bargaining-feedback.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/interaction/bargaining-feedback.md"
+    },
+    {
+      "id": "machine-mindset",
+      "group": "training-data",
+      "title": "Machine Mindset preference data",
+      "count": 12159,
+      "count_unit": "T/F preference pairs",
+      "input_structure": [
+        "instruction",
+        "input",
+        "output in aligned opposite-pole JSON lists"
+      ],
+      "output_structure": [
+        "prompt",
+        "chosen",
+        "rejected for DPO"
+      ],
+      "measures": [
+        "training loss for stopping"
+      ],
+      "construction": "Pair English Thinking and Feeling responses by row index, with matching instruction/context. Reversing the target reverses chosen/rejected.",
+      "upstream_url": "https://github.com/PKU-YuanGroup/Machine-Mindset",
+      "note": "This is training material, not a situational evaluation benchmark. The source dataset and model weights are not redistributed.",
+      "scope": "training resource",
+      "path": "training-data/machine-mindset.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/training-data/machine-mindset.md"
+    },
+    {
+      "id": "decision-probes",
+      "group": "probes",
+      "title": "Decision probes",
+      "count": 1319,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "shared record: id, task, prompt, instruction, label_map, reference, features",
+        "task-specific factor fields listed below"
+      ],
+      "output_structure": [
+        "task-specific discrete labels or a bounded numeric response"
+      ],
+      "measures": [
+        "within-condition response changes",
+        "paired condition effects",
+        "option-order and presentation sensitivity"
+      ],
+      "construction": "Frozen supplementary probe suite. The table below lists the included subtask structures and row counts.",
+      "upstream_url": null,
+      "note": "These are authored or adapted controlled probes, not independent official datasets. Counts include presentation/option-order variants and do not equal independent economic situations. Numeric elicitation tasks use a bounded numeric output instead of a categorical label.",
+      "scope": "supplementary probe suite",
+      "path": "probes/decision-probes.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/decision-probes.md"
+    },
+    {
+      "id": "decision-probes-semantic",
+      "group": "probes",
+      "title": "Decision probes semantic",
+      "count": 1319,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "shared record: id, task, prompt, instruction, label_map, reference, features",
+        "task-specific factor fields listed below"
+      ],
+      "output_structure": [
+        "task-specific discrete labels or a bounded numeric response"
+      ],
+      "measures": [
+        "within-condition response changes",
+        "paired condition effects",
+        "option-order and presentation sensitivity"
+      ],
+      "construction": "Frozen supplementary probe suite. The table below lists the included subtask structures and row counts.",
+      "upstream_url": null,
+      "note": "These are authored or adapted controlled probes, not independent official datasets. Counts include presentation/option-order variants and do not equal independent economic situations. Numeric elicitation tasks use a bounded numeric output instead of a categorical label.",
+      "scope": "supplementary probe suite",
+      "path": "probes/decision-probes-semantic.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/decision-probes-semantic.md"
+    },
+    {
+      "id": "decision-deep-probes",
+      "group": "probes",
+      "title": "Decision deep probes",
+      "count": 182,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "shared record: id, task, prompt, instruction, label_map, reference, features",
+        "task-specific factor fields listed below"
+      ],
+      "output_structure": [
+        "task-specific discrete labels or a bounded numeric response"
+      ],
+      "measures": [
+        "within-condition response changes",
+        "paired condition effects",
+        "option-order and presentation sensitivity"
+      ],
+      "construction": "Frozen supplementary probe suite. The table below lists the included subtask structures and row counts.",
+      "upstream_url": null,
+      "note": "These are authored or adapted controlled probes, not independent official datasets. Counts include presentation/option-order variants and do not equal independent economic situations. Numeric elicitation tasks use a bounded numeric output instead of a categorical label.",
+      "scope": "supplementary probe suite",
+      "path": "probes/decision-deep-probes.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/decision-deep-probes.md"
+    },
+    {
+      "id": "decision-validation",
+      "group": "probes",
+      "title": "Decision validation",
+      "count": 360,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "shared record: id, task, prompt, instruction, label_map, reference, features",
+        "task-specific factor fields listed below"
+      ],
+      "output_structure": [
+        "task-specific discrete labels or a bounded numeric response"
+      ],
+      "measures": [
+        "within-condition response changes",
+        "paired condition effects",
+        "option-order and presentation sensitivity"
+      ],
+      "construction": "Frozen supplementary probe suite. The table below lists the included subtask structures and row counts.",
+      "upstream_url": null,
+      "note": "These are authored or adapted controlled probes, not independent official datasets. Counts include presentation/option-order variants and do not equal independent economic situations. Numeric elicitation tasks use a bounded numeric output instead of a categorical label.",
+      "scope": "supplementary probe suite",
+      "path": "probes/decision-validation.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/decision-validation.md"
+    },
+    {
+      "id": "decision-history-replication",
+      "group": "probes",
+      "title": "Decision history replication",
+      "count": 108,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "shared record: id, task, prompt, instruction, label_map, reference, features",
+        "task-specific factor fields listed below"
+      ],
+      "output_structure": [
+        "task-specific discrete labels or a bounded numeric response"
+      ],
+      "measures": [
+        "within-condition response changes",
+        "paired condition effects",
+        "option-order and presentation sensitivity"
+      ],
+      "construction": "Frozen supplementary probe suite. The table below lists the included subtask structures and row counts.",
+      "upstream_url": null,
+      "note": "These are authored or adapted controlled probes, not independent official datasets. Counts include presentation/option-order variants and do not equal independent economic situations. Numeric elicitation tasks use a bounded numeric output instead of a categorical label.",
+      "scope": "supplementary probe suite",
+      "path": "probes/decision-history-replication.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/decision-history-replication.md"
+    },
+    {
+      "id": "decision-targeted-followup",
+      "group": "probes",
+      "title": "Decision targeted followup",
+      "count": 304,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "shared record: id, task, prompt, instruction, label_map, reference, features",
+        "task-specific factor fields listed below"
+      ],
+      "output_structure": [
+        "task-specific discrete labels or a bounded numeric response"
+      ],
+      "measures": [
+        "within-condition response changes",
+        "paired condition effects",
+        "option-order and presentation sensitivity"
+      ],
+      "construction": "Frozen supplementary probe suite. The table below lists the included subtask structures and row counts.",
+      "upstream_url": null,
+      "note": "These are authored or adapted controlled probes, not independent official datasets. Counts include presentation/option-order variants and do not equal independent economic situations. Numeric elicitation tasks use a bounded numeric output instead of a categorical label.",
+      "scope": "supplementary probe suite",
+      "path": "probes/decision-targeted-followup.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/decision-targeted-followup.md"
+    },
+    {
+      "id": "risk-summary-replication",
+      "group": "probes",
+      "title": "Risk summary replication",
+      "count": 160,
+      "count_unit": "inputs per condition",
+      "input_structure": [
+        "shared record: id, task, prompt, instruction, label_map, reference, features",
+        "task-specific factor fields listed below"
+      ],
+      "output_structure": [
+        "task-specific discrete labels or a bounded numeric response"
+      ],
+      "measures": [
+        "within-condition response changes",
+        "paired condition effects",
+        "option-order and presentation sensitivity"
+      ],
+      "construction": "Frozen supplementary probe suite. The table below lists the included subtask structures and row counts.",
+      "upstream_url": null,
+      "note": "These are authored or adapted controlled probes, not independent official datasets. Counts include presentation/option-order variants and do not equal independent economic situations. Numeric elicitation tasks use a bounded numeric output instead of a categorical label.",
+      "scope": "supplementary probe suite",
+      "path": "probes/risk-summary-replication.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/risk-summary-replication.md"
+    }
+  ],
+  "supplementary_probe_subtasks": {
+    "decision-probes": {
+      "bargaining": {
+        "inputs": 315,
+        "labels": {
+          "A": "ACCEPT",
+          "B": "COUNTER",
+          "C": "EXIT"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "source_id",
+          "source_split",
+          "category",
+          "asking_price",
+          "price_band",
+          "offer_ratio",
+          "pair_id",
+          "order"
+        ]
+      },
+      "bargaining_interaction": {
+        "inputs": 48,
+        "labels": {
+          "A": "ACCEPT",
+          "B": "COUNTER",
+          "C": "EXIT"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction",
+          "followups"
+        ],
+        "feature_fields": [
+          "asking_price",
+          "minimum_ratio",
+          "initial_offer_ratio",
+          "offer_path",
+          "offers",
+          "pair_id",
+          "order"
+        ]
+      },
+      "delay": {
+        "inputs": 192,
+        "labels": {
+          "A": "SOONER",
+          "B": "LATER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "amount",
+          "premium",
+          "delay_gap_days",
+          "front_delay_days",
+          "simple_annualized_premium",
+          "pair_id",
+          "order"
+        ]
+      },
+      "machine": {
+        "inputs": 112,
+        "labels": {
+          "A": "FEWER",
+          "B": "MORE"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "mean_gap_fewer_minus_more",
+          "fewer_n",
+          "more_n",
+          "horizon",
+          "pattern",
+          "pair_id",
+          "order"
+        ]
+      },
+      "movie": {
+        "inputs": 108,
+        "labels": {
+          "A": "ACCEPT",
+          "B": "ASK",
+          "C": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "information_state",
+          "clarification_cost_minutes",
+          "social_pressure",
+          "version",
+          "pair_id",
+          "order"
+        ]
+      },
+      "movie_interaction": {
+        "inputs": 36,
+        "labels": {
+          "A": "ACCEPT",
+          "B": "ASK",
+          "C": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction",
+          "followups"
+        ],
+        "feature_fields": [
+          "revelation",
+          "clarification_cost_minutes",
+          "version",
+          "pair_id",
+          "order"
+        ]
+      },
+      "risk": {
+        "inputs": 100,
+        "labels": {
+          "A": "LOTTERY",
+          "B": "CERTAIN"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "probability_high",
+          "expected_final_wealth_lottery",
+          "expected_final_wealth_certain",
+          "ev_gap",
+          "lottery_variance",
+          "frame",
+          "pair_id",
+          "order"
+        ]
+      },
+      "stock": {
+        "inputs": 216,
+        "labels": {
+          "A": "BUY",
+          "B": "SELL",
+          "C": "HOLD"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "prices_oldest_to_newest",
+          "target_net_return",
+          "realized_net_return",
+          "volatility_level",
+          "target_daily_log_return_population_sd",
+          "realized_daily_log_return_population_sd",
+          "path_id",
+          "standardized_return_pattern",
+          "last_daily_log_return",
+          "latest_price",
+          "pattern_is_shared_across_all_cells",
+          "purchase_price",
+          "pair_id",
+          "order"
+        ]
+      },
+      "tour": {
+        "inputs": 108,
+        "labels": {
+          "A": "ACCEPT",
+          "B": "ASK",
+          "C": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "information_state",
+          "clarification_cost_minutes",
+          "social_pressure",
+          "version",
+          "pair_id",
+          "order"
+        ]
+      },
+      "tour_interaction": {
+        "inputs": 36,
+        "labels": {
+          "A": "ACCEPT",
+          "B": "ASK",
+          "C": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction",
+          "followups"
+        ],
+        "feature_fields": [
+          "revelation",
+          "clarification_cost_minutes",
+          "version",
+          "pair_id",
+          "order"
+        ]
+      },
+      "travel": {
+        "inputs": 48,
+        "labels": {
+          "A": "SLOW",
+          "B": "FAST"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "minutes_saved",
+          "premium",
+          "dollars_per_hour_saved",
+          "mode_assignment",
+          "pair_id",
+          "order"
+        ]
+      }
+    },
+    "decision-probes-semantic": {
+      "bargaining": {
+        "inputs": 315,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "COUNTER": "COUNTER",
+          "EXIT": "EXIT"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "source_id",
+          "source_split",
+          "category",
+          "asking_price",
+          "price_band",
+          "offer_ratio",
+          "pair_id",
+          "order"
+        ]
+      },
+      "bargaining_interaction": {
+        "inputs": 48,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "COUNTER": "COUNTER",
+          "EXIT": "EXIT"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction",
+          "followups"
+        ],
+        "feature_fields": [
+          "asking_price",
+          "minimum_ratio",
+          "initial_offer_ratio",
+          "offer_path",
+          "offers",
+          "pair_id",
+          "order"
+        ]
+      },
+      "delay": {
+        "inputs": 192,
+        "labels": {
+          "SOONER": "SOONER",
+          "LATER": "LATER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "amount",
+          "premium",
+          "delay_gap_days",
+          "front_delay_days",
+          "simple_annualized_premium",
+          "pair_id",
+          "order"
+        ]
+      },
+      "machine": {
+        "inputs": 112,
+        "labels": {
+          "FEWER": "FEWER",
+          "MORE": "MORE"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "mean_gap_fewer_minus_more",
+          "fewer_n",
+          "more_n",
+          "horizon",
+          "pattern",
+          "pair_id",
+          "order"
+        ]
+      },
+      "movie": {
+        "inputs": 108,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "ASK": "ASK",
+          "OTHER": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "information_state",
+          "clarification_cost_minutes",
+          "social_pressure",
+          "version",
+          "pair_id",
+          "order"
+        ]
+      },
+      "movie_interaction": {
+        "inputs": 36,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "ASK": "ASK",
+          "OTHER": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction",
+          "followups"
+        ],
+        "feature_fields": [
+          "revelation",
+          "clarification_cost_minutes",
+          "version",
+          "pair_id",
+          "order"
+        ]
+      },
+      "risk": {
+        "inputs": 100,
+        "labels": {
+          "LOTTERY": "LOTTERY",
+          "CERTAIN": "CERTAIN"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "probability_high",
+          "expected_final_wealth_lottery",
+          "expected_final_wealth_certain",
+          "ev_gap",
+          "lottery_variance",
+          "frame",
+          "pair_id",
+          "order"
+        ]
+      },
+      "stock": {
+        "inputs": 216,
+        "labels": {
+          "BUY": "BUY",
+          "SELL": "SELL",
+          "HOLD": "HOLD"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "prices_oldest_to_newest",
+          "target_net_return",
+          "realized_net_return",
+          "volatility_level",
+          "target_daily_log_return_population_sd",
+          "realized_daily_log_return_population_sd",
+          "path_id",
+          "standardized_return_pattern",
+          "last_daily_log_return",
+          "latest_price",
+          "pattern_is_shared_across_all_cells",
+          "purchase_price",
+          "pair_id",
+          "order"
+        ]
+      },
+      "tour": {
+        "inputs": 108,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "ASK": "ASK",
+          "OTHER": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "information_state",
+          "clarification_cost_minutes",
+          "social_pressure",
+          "version",
+          "pair_id",
+          "order"
+        ]
+      },
+      "tour_interaction": {
+        "inputs": 36,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "ASK": "ASK",
+          "OTHER": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction",
+          "followups"
+        ],
+        "feature_fields": [
+          "revelation",
+          "clarification_cost_minutes",
+          "version",
+          "pair_id",
+          "order"
+        ]
+      },
+      "travel": {
+        "inputs": 48,
+        "labels": {
+          "SLOW": "SLOW",
+          "FAST": "FAST"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "minutes_saved",
+          "premium",
+          "dollars_per_hour_saved",
+          "mode_assignment",
+          "pair_id",
+          "order"
+        ]
+      }
+    },
+    "decision-deep-probes": {
+      "bargaining_elicitation": {
+        "inputs": 30,
+        "labels": {
+          "NUMBER": "elicited_value"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "response_type",
+          "numeric_min",
+          "numeric_max",
+          "instruction",
+          "features"
+        ],
+        "feature_fields": [
+          "source_id",
+          "category",
+          "asking_price",
+          "price_band",
+          "wording",
+          "pair_id",
+          "order"
+        ]
+      },
+      "machine_neutral": {
+        "inputs": 96,
+        "labels": {
+          "BLUE": "FEWER",
+          "RED": "MORE"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "mean_gap",
+          "horizon",
+          "fewer_color",
+          "fact_order_reversed",
+          "pair_id",
+          "order",
+          "means_provided"
+        ]
+      },
+      "risk_means": {
+        "inputs": 48,
+        "labels": {
+          "LOTTERY": "LOTTERY",
+          "CERTAIN": "CERTAIN"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "probability_high",
+          "expected_final_wealth_lottery",
+          "expected_final_wealth_certain",
+          "ev_gap",
+          "lottery_variance",
+          "frame",
+          "pair_id",
+          "order",
+          "means_provided"
+        ]
+      },
+      "travel_elicitation": {
+        "inputs": 8,
+        "labels": {
+          "NUMBER": "elicited_value"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "response_type",
+          "numeric_min",
+          "numeric_max",
+          "instruction",
+          "features"
+        ],
+        "feature_fields": [
+          "minutes_saved",
+          "mode_assignment",
+          "wording",
+          "pair_id",
+          "order"
+        ]
+      }
+    },
+    "decision-validation": {
+      "bargaining_deadline": {
+        "inputs": 144,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "COUNTER": "COUNTER",
+          "EXIT": "EXIT"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "asking_price",
+          "minimum_ratio",
+          "offer_ratio",
+          "final_offer",
+          "pair_id",
+          "order"
+        ]
+      },
+      "information_presentation": {
+        "inputs": 72,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "ASK": "ASK",
+          "OTHER": "OTHER"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "domain",
+          "information_state",
+          "representation",
+          "clarification_cost_minutes",
+          "pair_id",
+          "order"
+        ]
+      },
+      "machine_identity": {
+        "inputs": 48,
+        "labels": {
+          "FEWER": "FEWER",
+          "MORE": "MORE"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "mean_gap",
+          "horizon",
+          "fewer_color",
+          "fact_order_reversed",
+          "pair_id",
+          "order"
+        ]
+      },
+      "stock_replication": {
+        "inputs": 96,
+        "labels": {
+          "BUY": "BUY",
+          "SELL": "SELL",
+          "HOLD": "HOLD"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "net_return",
+          "volatility",
+          "path",
+          "prices",
+          "pair_id",
+          "order"
+        ]
+      }
+    },
+    "decision-history-replication": {
+      "bargaining_history_replication": {
+        "inputs": 108,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "COUNTER": "COUNTER",
+          "EXIT": "EXIT"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "instruction",
+          "label_map",
+          "reference",
+          "features"
+        ],
+        "feature_fields": [
+          "asking_price",
+          "minimum_ratio",
+          "minimum_price",
+          "current_offer_ratio",
+          "current_offer",
+          "history_type",
+          "previous_offer_ratios",
+          "history_turns",
+          "clarification_cost_minutes",
+          "history_is_supplied",
+          "order",
+          "context_id"
+        ]
+      }
+    },
+    "decision-targeted-followup": {
+      "bargaining_history_followup": {
+        "inputs": 144,
+        "labels": {
+          "ACCEPT": "ACCEPT",
+          "COUNTER": "COUNTER",
+          "EXIT": "EXIT"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "instruction",
+          "label_map",
+          "reference",
+          "features"
+        ],
+        "feature_fields": [
+          "asking_price",
+          "minimum_ratio",
+          "minimum_price",
+          "current_offer_ratio",
+          "current_offer",
+          "history_type",
+          "previous_offer_ratios",
+          "history_turns",
+          "clarification_cost_minutes",
+          "history_is_supplied",
+          "order",
+          "context_id"
+        ]
+      },
+      "machine_reward_followup": {
+        "inputs": 160,
+        "labels": {
+          "RED": "RED",
+          "BLUE": "BLUE"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "instruction",
+          "label_map",
+          "reference",
+          "features"
+        ],
+        "feature_fields": [
+          "mean_gap",
+          "horizon",
+          "fewer_n",
+          "more_n",
+          "fewer_color",
+          "fact_order",
+          "means_provided",
+          "mean_fewer",
+          "mean_more",
+          "order",
+          "context_id"
+        ]
+      }
+    },
+    "risk-summary-replication": {
+      "risk_means": {
+        "inputs": 160,
+        "labels": {
+          "LOTTERY": "LOTTERY",
+          "CERTAIN": "CERTAIN"
+        },
+        "input_fields": [
+          "id",
+          "task",
+          "source",
+          "prompt",
+          "label_map",
+          "reference",
+          "features",
+          "instruction"
+        ],
+        "feature_fields": [
+          "probability_high",
+          "ev_gap",
+          "frame",
+          "means_provided",
+          "expected_final_wealth_lottery",
+          "expected_final_wealth_certain",
+          "final_wealth_lottery_low",
+          "final_wealth_lottery_high",
+          "pair_id",
+          "order"
+        ]
+      }
+    }
+  }
+}
