@@ -79,6 +79,8 @@ SPACE
 | Decision targeted followup | 304 inputs per condition | [Open task card](probes/decision-targeted-followup.md) | [SPACE specification](probes/decision-targeted-followup.md) |
 | Risk summary replication | 160 inputs per condition | [Open task card](probes/risk-summary-replication.md) | [SPACE specification](probes/risk-summary-replication.md) |
 
+| Controlled movie/travel feedback probes | 2 authored scenario versions per domain | [Open task card](probes/recommendation-feedback.md) | [SPACE specification](probes/recommendation-feedback.md) |
+
 ## Training resource
 
 | Task | SPACE coverage | Specification | Original source |

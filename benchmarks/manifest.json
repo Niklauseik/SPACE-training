@@ -783,6 +783,36 @@
       "scope": "supplementary probe suite",
       "path": "probes/risk-summary-replication.md",
       "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/risk-summary-replication.md"
+    },
+    {
+      "id": "recommendation-feedback",
+      "group": "probes",
+      "title": "Controlled movie/travel feedback probes",
+      "count": 2,
+      "count_unit": "authored scenario versions per domain",
+      "input_structure": [
+        "movie or travel domain",
+        "authored scenario version",
+        "clarification cost",
+        "option order",
+        "interaction history and turn index"
+      ],
+      "output_structure": [
+        "domain-specific next action at each turn",
+        "movie: ACCEPT / REJECT / ASK_MORE",
+        "travel: ACCEPT / ASK_DETAILS / SEARCH_OTHER"
+      ],
+      "measures": [
+        "second-turn actions in the common cohort reaching turn two",
+        "descriptive paired effects",
+        "discrete paired tests with Holm correction"
+      ],
+      "construction": "Use two authored versions in each domain. Compare Base, T and F only on common records where all three reach turn two, preserving costs and option orders within a scenario version.",
+      "upstream_url": null,
+      "note": "Separate from the 119 INSPIRED and 282 Frames supplied-history panels. The selected second-turn cohort does not identify unconditional causal effects. With only two versions, nominal bootstrap confidence intervals are withheld. None of the 72 paper feedback comparisons survives Holm correction.",
+      "scope": "supplementary controlled feedback probes",
+      "path": "probes/recommendation-feedback.md",
+      "url": "https://github.com/Niklauseik/SPACE-training/blob/main/benchmarks/probes/recommendation-feedback.md"
     }
   ],
   "supplementary_probe_subtasks": {
