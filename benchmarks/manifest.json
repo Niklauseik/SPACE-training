@@ -1730,5 +1730,20 @@
         ]
       }
     }
+  },
+  "targeted_probe_count_notes": {
+    "expected_payoff_replication": {
+      "economic_cells": 20,
+      "frames": 2,
+      "option_orders": 2,
+      "matched_input_settings": 80,
+      "summary_conditions": 2,
+      "prompt_records": 160
+    },
+    "buyer_offer_probe": {
+      "source_situations": 15,
+      "prompt_records": 315
+    },
+    "note": "Prompt-record counts, matched comparisons and independent source units are different denominators."
   }
 }

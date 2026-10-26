@@ -87,6 +87,6 @@ SPACE
 
 ## Main-text targeted probes
 
-The expected-payoff replication has **20 economic cells and 80 inputs**, including both option orders and presentation frames. The buyer-offer probe has **15 source situations and 315 inputs** including offer levels and option orders. These are separate from the principal 1,764-choice variance panel and 900-input controlled-bargaining panel. The probe-suite cards list broader frozen supplementary grids; their row counts are not interchangeable with these figure-specific panels.
+The expected-payoff replication has **20 economic cells and 80 matched input settings**, crossing presentation frame and option order. Each setting is evaluated without and with an explicit payoff summary, producing **160 prompt records (80 per summary condition)** in the frozen replication suite. The buyer-offer probe has **15 source situations and 315 inputs** including offer levels and option orders. These are separate from the principal 1,764-choice variance panel and 900-input controlled-bargaining panel. The probe-suite cards list saved prompt-record counts; these must not be confused with matched-pair counts or independent economic situations.
 
 The two authored feedback versions per recommendation domain are reported separately in the paper statistics appendix; they are not part of the 119/282 principal history panels.

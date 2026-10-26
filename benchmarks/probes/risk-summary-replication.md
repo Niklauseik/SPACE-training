@@ -32,3 +32,7 @@ This page documents the task; no dataset download is included.
 | Subtask | Inputs | Outputs | Controlled fields |
 | --- | ---: | --- | --- |
 | `risk_means` | 160 | LOTTERY, CERTAIN | probability_high, ev_gap, frame, means_provided, expected_final_wealth_lottery, expected_final_wealth_certain, final_wealth_lottery_low, final_wealth_lottery_high, pair_id, order |
+
+## Matched settings and prompt records
+
+This suite crosses 20 economic cells, two frames and two option orders: 80 matched input settings. Each setting has a prompt without and with an explicit expected-payoff summary, giving 160 prompt records, 80 in each summary condition. Compare those two responses within a setting when measuring changed choices. The count of independent economic cells remains 20.
